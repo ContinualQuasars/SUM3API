@@ -8,7 +8,9 @@ Data from MetaTrader 5 (MT5)* <br><br>
 **Abstract**:<br>
 MetaTrader 5 (MT5), when connected to preferred exchanges or brokers, supports automated algorithmic trading via Expert Advisors (EAs) written in MetaQuotes Language (MQL5). While MetaQuotes Ltd. provides an official Python integration package, publicly documented methods for internally extracting and externally projecting MT5 financial data remain limited. To address this gap, we implemented a novel approach that bridges MQL5 and Rust via ZeroMQ publisher– subscriber and request–reply bindings. This benchmark-based methodology enables quantitative researchers, feature engineers, and algorithmic traders to develop trading systems leveraging MT5 data feeds using Rust, thereby bypassing the limitations inherent to pure MQL5 Expert Advisors. The methodology was validated through integration within a functional trad- ing terminal application demonstrating low-latency capabilities including: real-time account information monitoring (balance, equity, free and used margin), downloadable historical data requests (OHLC bars and raw tick data), downloadable forward data streaming (live tick recording), trade execution controls (market, limit, and stop orders with lot sizing and cancellation), messaging and notifications for debugging & recent calls, and a live microsecond-resolution raw tick-level bid/ask price formation chart.<br><br>
 **Keywords:**<br>
-MetaTrader 5, ZeroMQ, Rust, MetaQuotes Language 5, algorithmic trading, inter-process communication, financial data extraction, low-latency systems<br><br>
+MetaTrader 5, ZeroMQ, Rust, MetaQuotes Language 5, algorithmic trading, inter-process communication, financial data extraction, low-latency systems<br>
+
+**Paper:** You may view and download the paper [here](https://github.com/ContinualQuasars/SUM3API/blob/main/SUM3API.pdf).<br><br>
 
 ## Simple SUM3API System Framework
 <img width="303" height="618" alt="image" src="https://github.com/user-attachments/assets/802eba47-1c7e-4618-aadc-67b1189db5ab" />
@@ -3531,3 +3533,4 @@ If you use this library in your research or project, please cite:
 ```
 
 //end of documentattion
+
