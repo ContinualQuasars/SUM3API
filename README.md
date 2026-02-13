@@ -10,22 +10,75 @@ MetaTrader 5, ZeroMQ, Rust, MetaQuotes Language 5, algorithmic trading, inter-pr
 **Paper:** You may view and download the paper [here](https://github.com/ContinualQuasars/SUM3API/blob/main/SUM3API.pdf).<br><br>
 
 ## Simple SUM3API System Framework
-<img width="303" height="618" alt="image" src="https://github.com/user-attachments/assets/802eba47-1c7e-4618-aadc-67b1189db5ab" />
+```mermaid
+flowchart TB
+    subgraph MT5["MetaTrader 5"]
+        EA[ZmqPublisher.mq5<br/>Expert Advisor]
+        ZMQ_LIB[MQL5’s native DLL<br/>libzmq.dll + <br/>libsodium.dll]
+        WRAPPER[Zmq.mqh<br/>MQL5 Wrapper]
+    end
+    
+    subgraph Network["ZeroMQ Transport"]
+        PUB_SOCKET[PUB Socket<br/>Port 5555]
+        REP_SOCKET[REP Socket<br/>Port 5556]
+    end
+    
+    subgraph RUST["Rust Application"]
+        SUB[SubSocket<br/>Tick Receiver]
+        REQ[ReqSocket<br/>Order Sender]
+        GUI[egui + egui_plot<br/>Trading GUI]
+    end
+    
+    EA --> ZMQ_LIB
+    ZMQ_LIB --> PUB_SOCKET & REP_SOCKET
+    WRAPPER --> EA
+    
+    PUB_SOCKET -.->|Tick Data| SUB
+    REQ -.->|Order Request| REP_SOCKET
+    REP_SOCKET -.->|Response| REQ
+    
+    SUB --> GUI
+    REQ --> GUI
+```
 
 
 <br><br><br><br>
-## A proof of the SUM3API System Framework demonstration through a Software (Trading Terminal)
-<img width="1187" height="634" alt="622566837_1124349333017733_1244258009559375965_n (1)" src="https://github.com/user-attachments/assets/6c3c9244-413b-4530-85b3-17ed42d590af" />
+## Proof of the SUM3API System: Demonstration through a Software (Trading Terminal)
+<table border="1">
+  <tr>
+    <td>
+      <img 
+        width="1187" 
+        height="634" 
+        alt="622566837_1124349333017733_1244258009559375965_n (1)" 
+        src="https://github.com/user-attachments/assets/6c3c9244-413b-4530-85b3-17ed42d590af" 
+      />
+    </td>
+  </tr>
+</table>
+
 <br><br>
 
 _This is what it looked like from the perspective of a ‘stress-Following-this-GUIDE-tester.’ Following this [GUIDE](https://github.com/ContinualQuasars/SUM3API/blob/main/A%20GUIDE%20to%20open%20SUM3API%20software%20(trading%20terminal).pdf) from the very start to the finish._
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f98bb039-c676-47c1-a972-c94cc2a13584" />
+<table border="1">
+  <tr>
+    <td>
+      <img
+        width="1920"
+        height="1080"
+        alt="image"
+        src="https://github.com/user-attachments/assets/f98bb039-c676-47c1-a972-c94cc2a13584"
+      />
+    </td>
+  </tr>
+</table>
 
-<br><br><br><br>
+
+<br><br><br><br><br><br><br><br>
 The following pages will cover **Complete End-to-End System Architecture**, **MQL5-ZMQ Wrapper library**, and **RUST-ZMQ Wrapper library** for the SUM3API System.
 
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 # The Complete End-to-End System Architecture: MQL5 ↔ ZeroMQ ↔ Rust for SUM3API
 
 **Version**: 2.0.0  
@@ -3504,6 +3557,7 @@ If you use this in your research or project, please cite:
   version      = {2.00}
 }
 ```
+
 
 
 
