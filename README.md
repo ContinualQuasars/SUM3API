@@ -1,14 +1,11 @@
 **Author:** <br>
 Rembrant Oyangoren Albeos [<img width="16" height="16" alt="image" src="https://github.com/user-attachments/assets/4603823b-02db-4159-9999-93aa420bd2b6" />](https://orcid.org/0009-0006-8743-4419)<br><br>
 **Title:** <br>
-*SUM3API: Using Rust, ZeroMQ, and MetaQuotes
-Language (MQL5) API Combination to Extract,
-Communicate, and Externally Project Financial
-Data from MetaTrader 5 (MT5)* <br><br>
+*SUM3API: Using Rust, ZeroMQ, and MetaQuotes Language (MQL5) API Combination to Extract, Communicate, and Externally Project Financial Data from MetaTrader 5 (MT5)* <br><br>
 **Abstract**:<br>
-MetaTrader 5 (MT5), when connected to preferred exchanges or brokers, supports automated algorithmic trading via Expert Advisors (EAs) written in MetaQuotes Language (MQL5). While MetaQuotes Ltd. provides an official Python integration package, publicly documented methods for internally extracting and externally projecting MT5 financial data remain limited. To address this gap, we implemented a novel approach that bridges MQL5 and Rust via ZeroMQ publisher– subscriber and request–reply bindings. This benchmark-based methodology enables quantitative researchers, feature engineers, and algorithmic traders to develop trading systems leveraging MT5 data feeds using Rust, thereby bypassing the limitations inherent to pure MQL5 Expert Advisors. The methodology was validated through integration within a functional trad- ing terminal application demonstrating low-latency capabilities including: real-time account information monitoring (balance, equity, free and used margin), downloadable historical data requests (OHLC bars and raw tick data), downloadable forward data streaming (live tick recording), trade execution controls (market, limit, and stop orders with lot sizing and cancellation), messaging and notifications for debugging & recent calls, and a live microsecond-resolution raw tick-level bid/ask price formation chart.<br><br>
+MetaTrader 5 (MT5), developed by MetaQuotes Ltd., is one of the most widely adopted multi-asset retail trading platforms, supporting automated algorithmic trading through Expert Advisors (EAs) written in MetaQuotes Language 5 (MQL5). Although MetaQuotes provides an official Python integration package for programmatic access, publicly documented methodologies for extracting financial data from within the MT5 environment and projecting it to external applications remain limited—particularly for high-performance, memory-safe systems programming languages such as Rust. To address this gap, we present SUM3API, a novel inter-process communication (IPC) framework that bridges MQL5 and Rust via ZeroMQ publisher–subscriber (PUB/SUB) and request–reply (REQ/REP) socket bindings. The framework comprises three components: (1) a reusable MQL5 wrapper library (CZmq) that encapsulates ZeroMQ native library operations through foreign function in terface (FFI) calls, (2) an Expert Advisor (ZmqPublisher.mq5) that extracts real-time tick data, account state, position informa tion, and pending orders from the authenticated MT5 session and publishes them as JSON-serialized messages, and (3) an asynchronous Rust application built on the Tokio runtime that consumes tick streams, issues trade commands, and renders a real-time trading terminal GUI using the egui framework. A distinctive architectural advantage of this approach over the official Python API is the elimination of credential exposure: the Expert Advisor inherits the MT5 terminal’s pre-authenticated session, and no account credentials are transmitted over the communication layer. We validated the methodology through integration within a functional trading terminal, demonstrating real-time account monitoring (balance, equity, margin), downloadable historical data (OHLC bars and raw ticks), live tick recording, trade execution (market, limit, and stop orders), position and order management, and a microsecond-resolution raw tick-level bid/ask price formation chart.<br><br>
 **Keywords:**<br>
-MetaTrader 5, ZeroMQ, Rust, MetaQuotes Language 5, algorithmic trading, inter-process communication, financial data extraction, low-latency systems<br>
+MetaTrader 5, ZeroMQ, Rust, MetaQuotes Language 5, algorithmic trading, inter-process communication, financial data extraction, low-latency systems, credential isolation<br>
 
 **Paper:** You may view and download the paper [here](https://github.com/ContinualQuasars/SUM3API/blob/main/SUM3API.pdf).<br><br>
 
@@ -3533,4 +3530,5 @@ If you use this library in your research or project, please cite:
 ```
 
 //end of documentattion
+
 
